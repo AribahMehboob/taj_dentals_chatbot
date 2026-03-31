@@ -56,10 +56,10 @@ Address : Rawalpindi Road, Dadyal, AJK
 clinic is located at Rawalpindi Road, Dadyal, AJK
 Landmark: Near THQ Dadyal. Free parking available.
 
-# === CEO ===
-# CEO of taj dentals is  Mirza Muhammand Mehboob 
-# who is aloso CEO of Mughal Construction Group
-# don't mixup ceo and doctors 
+=== CEO ===
+CEO of taj dentals is  Mirza Muhammand Mehboob 
+who is aloso CEO of Mughal Construction Group
+tell the name og ceo wheo someone specially ask for ceo name
 
 
 
@@ -78,19 +78,6 @@ Dr. Iqra Mehboob -Dental Surgen, BDS RDS , 5 years experience
 Mr. Qamar  - Dental Hygenist and Dental Techician, 7 years experience
 Mr. Ali-  Dental Assistant, 3 years experience
 
-=== FEES & PAYMENT ===
-Consultation Fee: Rs. 1,000
-scaling + Polishing: Rs. 5,500 - 8,000
-Tooth Filling: Rs. 2,000 - 3,000
-Laser Filing: 3,000 - 4,500
-Root Canal Treatment: Rs. 5,000 - 8,000
-Tooth Extraction (simple): Rs. 1,000 - 3,500
-Tooth Extraction (surgical): Rs. 7,000 - 10,000
-Teeth Whitening: Rs. 25,000 - 30,000
-Dental Implant: Rs. 100,000 - 150,000
-Dental Braces: Rs. 50,000 - 80,000
-Crown (Porcelain): Rs. 10,000 - 18,000
-Payment: Cash, EasyPaisa, JazzCash, Cards, Bank Transfer.
 
 === SPECIAL OFFERS ===
 Free first consultation for new patients
