@@ -61,8 +61,9 @@ CEO of taj dentals is  Mirza Muhammand Mehboob
 who is aloso CEO of Mughal Construction Group
 tell the name og ceo wheo someone specially ask for ceo name
 
-
-
+=== Emergency Contact===
+Phone: +92-320-5018079
+WhatsApp: +92-320-5018079
 === CONTACT ===
 Phone: +92-320-5018079
 WhatsApp: +92-320-5018079
@@ -106,7 +107,7 @@ print("Knowledge base ready!")
 
 # ── System Prompt ──────────────────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are an AI-powered dental clinic assistant for Taj Dentals website.
-Answer using ONLY the provided context. No external knowledge. No hallucination.
+Answer using ONLY the provided context and use correct given contact if ask. No external knowledge. No hallucination.
 
 LANGUAGE RULES:
 - Detect language automatically: English, Urdu, Arabic, Roman Urdu
