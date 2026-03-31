@@ -90,7 +90,7 @@ Student discount: 10% off with valid ID
 Q: How often visit? A: Every 6 months.
 Q: Whitening safe? A: Yes, completely safe.
 Q: Child first visit? A: Age 2 or first tooth.
-Q: Emergency? A: Yes, call +92-300-1234567 anytime.
+Q: Emergency? A: Yes, call +92-320-5018079 anytime.
 Q: Implant duration? A: 3-6 months total.
 Q: Painful? A: Latest anesthesia used, mostly pain-free.
 """
