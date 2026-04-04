@@ -958,7 +958,7 @@ html, body {
 </div>
 
 <script>
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzYwHySqK51BNC4Rz5izo3cIRTNOW7jjhWx6Lpp9Eh7n6erd7Ch8zGkbQnLMGIh67lk/exec';
+
 const API_URL = '/chat';
 let chatHistory = [];
 let currentRating = 0;
@@ -1199,13 +1199,11 @@ async function submitAppointment() {
   btn.textContent = 'Booking...';
   btn.disabled = true;
 
-  try {
-    await fetch(SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'appointment', name, phone, datetime, service, message, bookedAt })
-    });
+  await fetch('/appointment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, phone, datetime, service, message, bookedAt })
+});
   } catch (e) { console.log('Sheets error:', e); }
 
   document.getElementById('success-phone').textContent = phone;
@@ -1243,13 +1241,11 @@ async function submitFeedback() {
     hour12: true
   });
 
-  try {
-    await fetch(SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'feedback', name, rating: currentRating, service, message, bookedAt })
-    });
+  await fetch('/feedback', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, rating: currentRating, service, message, bookedAt })
+});
   } catch (e) { console.log('Sheets error:', e); }
 
   document.getElementById('feedback-form').style.display = 'none';
