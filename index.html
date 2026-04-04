@@ -1079,7 +1079,6 @@ function clearChat() {
     <p>Ask me anything about our dental services, fees, doctors, or appointments — in any language.</p>
     <div class="welcome-chips">
       <button class="chip" onclick="ask('What are your working hours?')">🕐 Hours</button>
-      <button class="chip" onclick="ask('What are your fees?')">💰 Fees</button>
       <button class="chip" onclick="ask('Who are your doctors?')">👨‍⚕️ Doctors</button>
       <button class="chip" onclick="ask('Do you have emergency service?')">🚨 Emergency</button>
       <button class="chip" onclick="ask('What services do you offer?')">🦷 Services</button>
@@ -1175,19 +1174,16 @@ async function submitAppointment() {
     return;
   }
 
-  // ── STRICT TIME VALIDATION (9AM - 7PM) ──
   const [hours, minutes] = time.split(':').map(Number);
   if (hours < 9 || hours > 19 || (hours === 19 && minutes > 0)) {
     alert('⏰ Please select a time between 9:00 AM and 7:00 PM.\nThe clinic is open 9AM–7PM only.');
     return;
   }
 
-  // ── FORMAT TIME TO 12H ──
   const timeObj = new Date(`2000-01-01T${time}`);
   const time12 = timeObj.toLocaleTimeString('en-PK', { hour: '2-digit', minute: '2-digit', hour12: true });
   const datetime = `${date} at ${time12}`;
 
-  // ── CLIENT REAL BOOKING TIMESTAMP ──
   const now = new Date();
   const bookedAt = now.toLocaleString('en-PK', {
     year: 'numeric', month: '2-digit', day: '2-digit',
@@ -1199,12 +1195,13 @@ async function submitAppointment() {
   btn.textContent = 'Booking...';
   btn.disabled = true;
 
-  await fetch('/appointment', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, phone, datetime, service, message, bookedAt })
-});
-  } catch (e) { console.log('Sheets error:', e); }
+  try {
+    await fetch('/appointment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, datetime, service, message, bookedAt })
+    });
+  } catch (e) { console.log('Appointment error:', e); }
 
   document.getElementById('success-phone').textContent = phone;
   document.getElementById('appt-form').style.display = 'none';
@@ -1234,19 +1231,19 @@ async function submitFeedback() {
   btn.textContent = 'Submitting...';
   btn.disabled = true;
 
-  // Client timestamp for feedback too
   const bookedAt = new Date().toLocaleString('en-PK', {
     year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', second: '2-digit',
     hour12: true
   });
 
-  await fetch('/feedback', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, rating: currentRating, service, message, bookedAt })
-});
-  } catch (e) { console.log('Sheets error:', e); }
+  try {
+    await fetch('/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, rating: currentRating, service, message, bookedAt })
+    });
+  } catch (e) { console.log('Feedback error:', e); }
 
   document.getElementById('feedback-form').style.display = 'none';
   document.getElementById('feedback-success').style.display = 'block';
