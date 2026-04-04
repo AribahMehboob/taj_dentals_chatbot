@@ -199,8 +199,10 @@ async def chat(request: Request, req: ChatRequest):
 async def save_appointment(req: AppointmentRequest):
     if SHEETS_URL:
         try:
+            req_data = req.dict()
+            req_data['type'] = 'appointment'
             async with httpx.AsyncClient() as client:
-                await client.post(SHEETS_URL, json=req.dict())
+                await client.post(SHEETS_URL, json=req_data)
         except Exception:
             pass
     return {"status": "success"}
@@ -209,8 +211,10 @@ async def save_appointment(req: AppointmentRequest):
 async def save_feedback(req: FeedbackRequest):
     if SHEETS_URL:
         try:
+            req_data = req.dict()
+            req_data['type'] = 'feedback'
             async with httpx.AsyncClient() as client:
-                await client.post(SHEETS_URL, json=req.dict())
+                await client.post(SHEETS_URL, json=req_data)
         except Exception:
             pass
     return {"status": "success"}
