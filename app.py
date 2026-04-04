@@ -1,4 +1,5 @@
 import os
+import logging
 import httpx
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
@@ -15,6 +16,10 @@ from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from fastapi.responses import JSONResponse
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # ── Load environment ──────────────────────────────────────────────────────────
 load_dotenv()
@@ -201,10 +206,14 @@ async def save_appointment(req: AppointmentRequest):
         try:
             req_data = req.dict()
             req_data['type'] = 'appointment'
+            logger.info(f"Posting appointment payload: {req_data}")
             async with httpx.AsyncClient() as client:
-                await client.post(SHEETS_URL, json=req_data)
-        except Exception:
-            pass
+                response = await client.post(SHEETS_URL, json=req_data)
+            logger.info(f"Sheets response [{response.status_code}]: {response.text}")
+        except Exception as e:
+            logger.error(f"Failed to post to SHEETS_URL: {e}")
+    else:
+        logger.warning("SHEETS_URL is not set; skipping appointment save")
     return {"status": "success"}
 
 @app.post("/feedback")
@@ -213,10 +222,14 @@ async def save_feedback(req: FeedbackRequest):
         try:
             req_data = req.dict()
             req_data['type'] = 'feedback'
+            logger.info(f"Posting feedback payload: {req_data}")
             async with httpx.AsyncClient() as client:
-                await client.post(SHEETS_URL, json=req_data)
-        except Exception:
-            pass
+                response = await client.post(SHEETS_URL, json=req_data)
+            logger.info(f"Sheets response [{response.status_code}]: {response.text}")
+        except Exception as e:
+            logger.error(f"Failed to post to SHEETS_URL: {e}")
+    else:
+        logger.warning("SHEETS_URL is not set; skipping feedback save")
     return {"status": "success"}
 
 @app.get("/", response_class=HTMLResponse)
