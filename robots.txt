@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /chat
+Disallow: /appointment
+Disallow: /feedback
+Disallow: /docs
+Disallow: /redoc
+Allow: /
