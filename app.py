@@ -62,7 +62,9 @@ async def add_security_headers(request: Request, call_next):
 
 # ── Serve static files ────────────────────────────────────────────────────────
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
+@app.get("/robots.txt")
+async def robots():
+    return FileResponse("robots.txt")
 @app.get("/images/logo.png")
 async def get_logo():
     return FileResponse("static/images/logo.png")
