@@ -33,7 +33,7 @@ client = Groq(api_key=api_key)
 limiter = Limiter(key_func=get_remote_address)
 
 # ── Create FastAPI app ────────────────────────────────────────────────────────
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 app.state.limiter = limiter
 
 # ── Rate limit error handler ──────────────────────────────────────────────────
